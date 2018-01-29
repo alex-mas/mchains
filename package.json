@@ -2,14 +2,17 @@
   "name": "mchainsjs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/mchains.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack --config=webpack.mdl.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^22.1.4",
-    "n-gram": "^1.0.1"
+    "n-gram": "^1.0.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0"
   }
 }
