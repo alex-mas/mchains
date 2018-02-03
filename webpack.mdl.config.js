@@ -3,7 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     entry: {
       "mchains":'./src/mchains.js',
-      "mchais.min": './src/mchains.js'
+      "mchains.min": './src/mchains.js'
     },
     output: {
       path: __dirname+'/bin',
