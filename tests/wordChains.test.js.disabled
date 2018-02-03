@@ -1,0 +1,38 @@
+const Chain = require('../src/mchains');
+const testSamples = require('./tests_db/stateTests');
+var nGram = require('n-gram');
+const log = false;
+
+describe('Chain states tests with word corpus', function () {
+
+    let unigramChain = new Chain(
+        {
+            order: 1,
+            type: String,
+            stringType: 'word'
+        },
+        testSamples.second.string
+    );
+    let bigramChain = new Chain(
+        {
+            order: 2,
+            type: String,
+            stringType: 'word'
+        },
+        testSamples.second.string
+    );
+
+
+    test('Unigrams should be generated properly', () => {
+        let ngrams = nGram(1)(testSamples.second.string).sort()
+        ngrams = [... new Set(ngrams)];
+        expect(unigramChain._getChainStates().sort()).toEqual(ngrams);
+    });
+
+    test('Bigrams should be generated properly', () => {
+        let ngrams = nGram(2)(testSamples.second.string).sort()
+        ngrams = [... new Set(ngrams)];
+        expect(bigramChain._getChainStates().sort()).toEqual(ngrams);
+    });
+});
+

@@ -1,6 +1,6 @@
 const Chain = require('../src/mchains');
 const valyrianNames = require('./tests_db/valyrian');
-
+const testSamples = require('./tests_db/stateTests');
 const log = true;
 
 describe('Output tests', function () {
@@ -12,7 +12,22 @@ describe('Output tests', function () {
         valyrianNames
     );
 
+    let trumpChain = new Chain(
+        {
+            order: 2,
+            type: String,
+            stringType: 'word'
+        },
+        testSamples.second.string
+    );
     
+    const sampleSentences = trumpChain.generate({
+        minLength: 5,
+        maxLength: 13,
+        amount: 1
+    });
+
+
     const sampleStrings = myChain.generate({
         minLength: 3,
         maxLength: 7,
@@ -57,6 +72,7 @@ describe('Output tests', function () {
 
         if(log){
             console.log(sampleStrings);
+            console.log(sampleSentences);
         }
 
     });

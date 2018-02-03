@@ -17,7 +17,7 @@ module.exports = {
       new UglifyJsPlugin({
         include: /\.min\.js$/,
         sourceMap:true
-      })
+      }),
     ]
   };
 

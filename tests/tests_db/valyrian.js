@@ -122,4 +122,4 @@ module.exports = [
     "Arrax",
     "Meleys",
     "Tessarion"
-];
+].map((elmt)=>{return elmt.toLowerCase()});

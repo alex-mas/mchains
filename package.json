@@ -1,14 +1,23 @@
 {
-  "name": "mchainsjs",
+  "name": "mchains",
   "version": "1.0.0",
   "description": "",
-  "main": "src/mchains.js",
+  "main": "bin/mchains.min.js",
   "scripts": {
     "test": "jest",
     "build": "webpack --config=webpack.mdl.config.js"
   },
-  "author": "",
-  "license": "ISC",
+  "url": "TODO",
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "email": "sulfar.dev@gmail.com",
+  "engines": {
+    "node": ">= 6.4.0"
+  },
+  "author": "sulfar",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^22.1.4",
     "n-gram": "^1.0.1",
