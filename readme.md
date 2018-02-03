@@ -48,69 +48,78 @@ methods
 ```javascript
 
 
-
-/**
- * 
- * Constructs a Chain object with the provided configuration, if training data is provided it will also train on that data
- * @param {Object} [config={}]
- * @param {Number} [config.order = 2] - The order of the chain, that will decide how many elements get grouped together to form each state
- * @param {Function} [config.type = String] - the constructor of the element that we will construct the chain from. Defaults to String
- * @param {String} [config.stringType = 'character'] - Conditional property: Only provide it if config.type is String, it can take two values: 'character' and 'word'. Depending on the value provided the strings will be parsed as words or as characters respectively
- * @param {Object | String[] | String | undefined} [training=undefined]
- *  
- */
-Chain();
+new Chain(
+    //first argument: optional configuration object
+    {
+    order: // defaults to 2
+    type: //defaults to String constructor, right now its the only type supported
+    stringType: //defaults to 'character', valid values are: 'character' and 'word'
+    }, 
+    //second argument: optional training data
+    training //defaults to undefined, can be a string, an array or an object
+);
 
 
 //methods
 let chain = new Chain();
 
+
 // takes a string, an array of strings or an object who's keys are strings
 //recursively iterates the provided training data looking for strings
-chain.train() 
+chain.train(training) 
+//Valid training data looks like:
+
+//option 1:
+const training = ' just a simple string';
+
+//option 2:
+const training = ['first string', 'second string', ['string inside an array', 'etc...']];
+
+//option 3: 
+const training = {
+    firstSampleData: ['first string', 'second string', ['string inside an array', 'etc...']],
+    secondSampleData: {
+        whateverKey: ['first string', 'second string', ['string inside an array', 'etc...']],
+        anotherKey: 'just a simple string'
+    },
+    thirdSampleData: 'just a simple string'
+}
+
+
+
 
 //looks for the provided string in the states internal object and returns a boolean
-chain.doesStateExist()
+chain.doesStateExist(state)
 
 
 
-
-/**
- * 
- * Provides an object with the user defined parameters to be used as defaults for generate method
- * 
- * @param {Object} [config=this._outputConfig] 
- * @param {Number} [config.minLength=chain order] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
- * @param {Number} [config.maxLength=chain order*2] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
- * @param {Number} [config.amount=1] - Amount of output units to generate, where an output unit is a sentence/word/number depending on the chain type
- * @param {Boolean} [config.capitalizeFirst=false] - Wether to capitalize first character of words, do not provide this if chain is not based on strings parsed as characters
- * @param {Boolean} [config.cropToLength=true] - Wether to crop the output to the maximum length provided, if set to false the generator will discard output that surpases 
- *                                        the maximum length, efectively taking longer, setting it to true will crop the output creating subsections of the chains  
- *                                        which might not be desired
-**/
-chain.configOutput()
+//takes a configuration object to setup how do you want the output to be
+chain.configOutput(
+    {
+        minLength: //defaults to chain order
+        maxLength: //defaults to chain order*2
+        amount: //defaults to 1
+        capitalizeFirst: //defaults to false
+        cropToLength: //defaults to false
+    }
+)
 
 
 //returns an array of strings, representing the unique ngrams found in the provided training data
 chain.getNgrams();
 
 
-
-/**
- * Takes an optional configuration objet that alters how the generator works, if no configuration the default values on each parameter will be used, 
- * then it calls the apropiate generator function.
- * 
- * @param {Object} [config=this._outputConfig] 
- * @param {Number} [config.minLength=chain order] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
- * @param {Number} [config.maxLength=chain order*2] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
- * @param {Number} [config.amount=1] - Amount of output units to generate, where an output unit is a sentence/word/number depending on the chain type
- * @param {Boolean} [config.capitalizeFirst=false] - Wether to capitalize first character of words, do not provide this if chain is not based on strings parsed as characters
- * @param {Boolean} [config.cropToLength=true] - Wether to crop the output to the maximum length provided, if set to false the generator will discard output that surpases 
- *                                        the maximum length, efectively taking longer, setting it to true will crop the output creating subsections of the chains  
- *                                        which might not be desired
- * @returns {String[]}  randomly generated strings based on the corpus data the chain has trained on
- */
-chain.generate()
+//returns an array of strings generate randomly from the internal states of the chain
+chain.generate(
+    //optional configuration object
+    {
+        minLength: //defaults to chain order
+        maxLength: //defaults to chain order*2
+        amount: //defaults to 1
+        capitalizeFirst: //defaults to false
+        cropToLength: //defaults to false
+    }
+)
 
 ```
 
