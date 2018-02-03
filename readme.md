@@ -8,12 +8,26 @@ npm i mchains --save
 ```
 
 # usage
-
+### supports UMD
 Right now only string chains are supported
+
+
+
+
+
 ```javascript 
 
-//yourFile.js
+/*IMPORTING THE SCRIPT*/
+
+
+//common.js
 const Chain = require('mchains');
+
+//Import globally
+<script src="node_modules/mchains/mchains.js"></script>
+//NOTE: access it via window.mchains
+const Chain = window.mchains
+
 
 
 //chain with configuration and training data
@@ -29,6 +43,8 @@ untrainedChain.train(['first string', 'second string' ...yourData]);
 let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse']
 
 ```
+
+
 
 # documentation
 
@@ -126,5 +142,3 @@ chain.generate(
 ## live examples
 The following page uses this algorithm in order to generate some of the names
 [demo page](http://www.randomfantasynames.com/)
-
-Usage
