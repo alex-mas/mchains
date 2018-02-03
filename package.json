@@ -7,10 +7,11 @@
     "test": "jest",
     "build": "webpack --config=webpack.mdl.config.js"
   },
+  "homepage": "https://github.com/r-Sulfar/mchains",
   "url": "TODO",
   "repository": {
     "type": "git",
-    "url": "TODO"
+    "url": "https://github.com/r-Sulfar/mchains.git"
   },
   "email": "sulfar.dev@gmail.com",
   "engines": {
