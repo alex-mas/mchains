@@ -2,12 +2,12 @@ mchains.js
 ==========================
 
 
-#install 
+# install 
 ```
 npm i mchains --save
 ```
 
-#usage
+# usage
 
 Right now only string chains are supported
 ```javascript 
@@ -30,7 +30,7 @@ let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse'
 
 ```
 
-#documentation
+# documentation
 
 Properties
 Note: there are some public properties that are ment to be readonly:
@@ -123,7 +123,7 @@ chain.generate(
 
 ```
 
-##live examples
+## live examples
 The following page uses this algorithm in order to generate some of the names
 [demo page](http://www.randomfantasynames.com/)
 
