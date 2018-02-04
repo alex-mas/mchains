@@ -1,17 +1,16 @@
 mchains.js
-==========================
-
+===
+Simple markov chains
 
 # install 
 ```
 npm i mchains --save
 ```
 
+
 # usage
 ### supports UMD
 Right now only string chains are supported
-
-
 
 
 
@@ -46,23 +45,18 @@ let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse'
 
 
 
+
+
+
+
 # documentation
 
-Properties
-Note: there are some public properties that are ment to be readonly:
+Markov chains are discrete sequences of states, commonly used in pseudo-random generation of strings, numbers and other data.
+
+
+constructor
+
 ```javascript
-
-let chain = new Chain();
-
-chain.order //returns the order of the chain
-chain.type //returns the constructor the identifies the chain type --> String;
-chiain.stringType // returns the method used to parse strings  -> 'character' or 'word'
-
-```
-
-methods
-```javascript
-
 
 new Chain(
     //first argument: optional configuration object
@@ -74,6 +68,33 @@ new Chain(
     //second argument: optional training data
     training //defaults to undefined, can be a string, an array or an object
 );
+//or
+
+```
+
+Configuration object:
+
+order: 
+Defines how many items are grouped together to form a state, in the case of strings that is either words or characters
+If you want to use this for word generation a lower order will produce more random-like patterns than higher order values
+
+type:
+Constructor function of the type you want the chain to be, right now only String is supported, other constructors will not work.
+
+stringType:
+Determines how the strings are parsed and generated:
+- "character" will make the strings be parsed as sequences of characters
+- "word" will make the strings be parsed as sequences of words (strings delimited by " ", "\n" and "\r" )
+
+
+second parameter: 
+Optional training data for the chain to process, more information about training data below.
+
+
+methods
+```javascript
+
+
 
 
 //methods
@@ -138,6 +159,36 @@ chain.generate(
 )
 
 ```
+
+Properties
+Note: public properties that are ment to be readonly, they are initialized with the cosntructor:
+
+Chain.order
+returns the order of the chain, that is, how many items are grouped together to form each state
+```javascript
+let chain = new Chain();
+chain.order 
+```
+
+Chain.type
+returns the constructor of the type used to construct the chains
+```javascript
+let chain = new Chain();
+chain.type
+//possible output:
+String
+Number
+Symbol
+//etc
+```
+
+Chain.stringType
+returns the method used to parse strings, if Chain.type is not String this property will not be used by the algorithm
+```javascript
+let chain = new Chain();
+chiain.stringType 
+```
+
 
 ## live examples
 The following page uses this algorithm in order to generate some of the names
