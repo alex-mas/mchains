@@ -54,7 +54,7 @@ let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse'
 Markov chains are discrete sequences of states, commonly used in pseudo-random generation of strings, numbers and other data.
 
 
-constructor
+### constructor
 
 ```javascript
 
@@ -72,28 +72,27 @@ new Chain(
 
 ```
 
-Configuration object:
+#### Configuration object:
 
-order: 
+##### order: 
 Defines how many items are grouped together to form a state, in the case of strings that is either words or characters
 If you want to use this for word generation a lower order will produce more random-like patterns than higher order values
 
-type:
+##### type:
 Constructor function of the type you want the chain to be, right now only String is supported, other constructors will not work.
 
-stringType:
+##### stringType:
 Determines how the strings are parsed and generated:
 - "character" will make the strings be parsed as sequences of characters
 - "word" will make the strings be parsed as sequences of words (strings delimited by " ", "\n" and "\r" )
 
 
-second parameter: 
+#### second parameter: 
 Optional training data for the chain to process, more information about training data below.
 
 
-methods
+### methods
 ```javascript
-
 
 
 
@@ -160,17 +159,17 @@ chain.generate(
 
 ```
 
-Properties
+### Properties
 Note: public properties that are ment to be readonly, they are initialized with the cosntructor:
 
-Chain.order
+#### Chain.order
 returns the order of the chain, that is, how many items are grouped together to form each state
 ```javascript
 let chain = new Chain();
 chain.order 
 ```
 
-Chain.type
+#### Chain.type
 returns the constructor of the type used to construct the chains
 ```javascript
 let chain = new Chain();
@@ -182,7 +181,7 @@ Symbol
 //etc
 ```
 
-Chain.stringType
+#### Chain.stringType
 returns the method used to parse strings, if Chain.type is not String this property will not be used by the algorithm
 ```javascript
 let chain = new Chain();
