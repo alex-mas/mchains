@@ -78,18 +78,18 @@ Optional training data for the chain to process, more information about training
 
 
 ### methods
+
+
+#### train()
+Takes data to train from it generating new states for the chain.
+
+Valid data:
+- A string
+- An array of strings
+- An object with string values in its properties
+
+Examples:
 ```javascript
-
-
-
-//methods
-let chain = new Chain();
-
-
-// takes a string, an array of strings or an object who's keys are strings
-//recursively iterates the provided training data looking for strings
-chain.train(training) 
-//Valid training data looks like:
 
 //option 1:
 const training = ' just a simple string';
@@ -108,42 +108,31 @@ const training = {
 }
 
 
-
-
-//looks for the provided string in the states internal object and returns a boolean
-chain.doesStateExist(state)
-
-
-
-//takes a configuration object to setup how do you want the output to be
-chain.configOutput(
-    {
-        minLength: //defaults to chain order
-        maxLength: //defaults to chain order*2
-        amount: //defaults to 1
-        capitalizeFirst: //defaults to false
-        cropToLength: //defaults to false
-    }
-)
-
-
-//returns an array of strings, representing the unique ngrams found in the provided training data
-chain.getNgrams();
-
-
-//returns an array of strings generate randomly from the internal states of the chain
-chain.generate(
-    //optional configuration object
-    {
-        minLength: //defaults to chain order
-        maxLength: //defaults to chain order*2
-        amount: //defaults to 1
-        capitalizeFirst: //defaults to false
-        cropToLength: //defaults to false
-    }
-)
-
 ```
+
+#### doesStateExist(String)
+returns true if the string matches one of the chain states, false otherwise
+
+#### configOutput(config)
+Takes a configuration object to configure the output of the generate method
+
+Configuration object properties:
+- minLength            -> defaults to chain order
+- maxLength            -> defaults to chain's order * 2
+- amount               -> defaults to 1
+- capitalizeFirst      -> defaults to false
+- cropToLength         -> defaults to false
+
+#### getNgrams()
+returns an array of strings, representing the unique ngrams found in the provided training data
+
+
+
+#### generate(config)
+returns an array of strings generated randomly from the internal states of the chain
+- The config param matches the structure of the parameter of configOutput method
+
+
 
 ### Properties
 Note: public properties that are ment to be readonly, they are initialized with the cosntructor:

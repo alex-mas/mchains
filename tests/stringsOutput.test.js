@@ -6,8 +6,7 @@ const log = true;
 describe('Output tests', function () {
     let myChain = new Chain(
         {
-            order: 2,
-            type: String,
+            order: 2
         },
         valyrianNames
     );
@@ -15,8 +14,7 @@ describe('Output tests', function () {
     let trumpChain = new Chain(
         {
             order: 2,
-            type: String,
-            stringType: 'word'
+            type: 'word'
         },
         testSamples.second.string
     );

@@ -65,26 +65,13 @@ Chain.prototype.train = function (trainingData) {
         }
 
     } else {
-        this._learnFrom(trainingData);
+        if (this.type == 'word') {
+            this._learnFromWords(trainingData);
+        } else {
+            this._learnFromCharacters(trainingData);
+        }
     }
 }
-
-
-/**
- * @description Wrapper function that calls the correct function to learn from provided data
- * @private
- * @param {Any} data - Data to add to the chain states
- * @returns {void}
- */
-Chain.prototype._learnFrom = function (data) {
-    if (this.type == 'word') {
-        this._learnFromWords(data);
-    } else {
-        this._learnFromCharacters(data);
-    }
-
-}
-
 
 /**
  * @description - Returns wether or not the provided param is a state inside the chain

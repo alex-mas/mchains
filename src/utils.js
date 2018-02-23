@@ -21,6 +21,8 @@ const getRandomFrom = (arg) => {
 const getRandomFromWeightedList = (list)=> {
 
     let weightSum = 0;
+    let i;
+    let sum = 0;
 
     const states = Object.keys(list)
 
@@ -28,8 +30,6 @@ const getRandomFromWeightedList = (list)=> {
         weightSum += list[states[i]].__count__;
     }
 
-    let i;
-    let sum = 0;
     const r = Math.round(Math.random() * weightSum);
 
     for (i in list) {

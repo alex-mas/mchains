@@ -7,29 +7,25 @@ describe('Chain states tests', function () {
 
     let unigramChain = new Chain(
         {
-            order: 1,
-            type: String,
+            order: 1
         },
         testSamples.first.string
     );
     let bigramChain = new Chain(
         {
-            order: 2,
-            type: String,
+            order: 2
         },
         testSamples.first.string
     );
     let trigramChain = new Chain(
         {
-            order: 3,
-            type: String,
+            order: 3
         },
         testSamples.first.string
     );
     let fourthgramChain = new Chain(
         {
-            order: 4,
-            type: String,
+            order: 4
         },
         testSamples.first.string
     );
@@ -58,8 +54,7 @@ describe('Chain states tests', function () {
         while(order < testSamples.first.string.length-1){
             let ngramChain = new Chain(
                 {
-                    order: order,
-                    type: String,
+                    order: order
                 },
                 testSamples.first.string
             );
