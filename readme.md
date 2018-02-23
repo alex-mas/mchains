@@ -1,6 +1,6 @@
 mchains.js
 ===
-Simple markov chains
+Simple string markov chains
 
 # install 
 ```
@@ -24,7 +24,7 @@ const Chain = require('mchains');
 
 //Import globally
 <script src="node_modules/mchains/mchains.js"></script>
-//NOTE: access it via window.mchains
+//NOTE: If you imported it via html script tag you must access it via window.mchains as follows:
 const Chain = window.mchains
 
 
@@ -32,7 +32,7 @@ const Chain = window.mchains
 //chain with configuration and training data
 let chain = new Chain({
             order: 2,
-            type: String,
+            type: 'character',
         }, 'this is a string, you can insert an array with strings too');
 
 let untrainedChain =  new Chain();
@@ -44,50 +44,36 @@ let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse'
 ```
 
 
-
-
-
-
-
 # documentation
 
-Markov chains are discrete sequences of states, commonly used in pseudo-random generation of strings, numbers and other data.
+Markov chains are discrete sequences of states, commonly used in generation of strings, numbers and other data.
 
 
 ### constructor
 
 ```javascript
 
-new Chain(
-    //first argument: optional configuration object
-    {
-    order: // defaults to 2
-    type: //defaults to String constructor, right now its the only type supported
-    stringType: //defaults to 'character', valid values are: 'character' and 'word'
-    }, 
-    //second argument: optional training data
-    training //defaults to undefined, can be a string, an array or an object
-);
-//or
+new Chain(parameters);
 
 ```
+Parameters:
+- Configuration object(optional)
+- Training data(optional)
 
-#### Configuration object:
+#### Configuration object(optional):
 
 ##### order: 
 Defines how many items are grouped together to form a state, in the case of strings that is either words or characters
 If you want to use this for word generation a lower order will produce more random-like patterns than higher order values
 
-##### type:
-Constructor function of the type you want the chain to be, right now only String is supported, other constructors will not work.
 
-##### stringType:
+##### type:
 Determines how the strings are parsed and generated:
 - "character" will make the strings be parsed as sequences of characters
 - "word" will make the strings be parsed as sequences of words (strings delimited by " ", "\n" and "\r" )
 
 
-#### second parameter: 
+#### Training data: 
 Optional training data for the chain to process, more information about training data below.
 
 
@@ -170,22 +156,10 @@ chain.order
 ```
 
 #### Chain.type
-returns the constructor of the type used to construct the chains
-```javascript
-let chain = new Chain();
-chain.type
-//possible output:
-String
-Number
-Symbol
-//etc
-```
-
-#### Chain.stringType
 returns the method used to parse strings, if Chain.type is not String this property will not be used by the algorithm
 ```javascript
 let chain = new Chain();
-chiain.stringType 
+chain.type 
 ```
 
 

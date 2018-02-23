@@ -13,21 +13,19 @@ const {
  * @description - Constructs a Chain object with the provided configuration, if training data is provided it will also train on that data
  * @param {Object} [config={}]
  * @param {Number} [config.order = 2] - The order of the chain, that will decide how many elements get grouped together to form each state
- * @param {Function} [config.type = String] - the constructor of the element that we will construct the chain from. Defaults to String
- * @param {String} [config.stringType = 'character'] - Conditional property: Only provide it if config.type is String, it can take two values: 'character' and 'word'. Depending on the value provided the strings will be parsed as words or as characters respectively
+ * @param {String} [config.type = 'character'] - Conditional property: Only provide it if config.type is String, it can take two values: 'character' and 'word'. Depending on the value provided the strings will be parsed as words or as characters respectively
  * @param {Object | String[] | String | undefined} [training=undefined]
  *  
  */
 const Chain = function (config = {}, training = undefined) {
     //default config
     this.order = config.order || 2;
-    this.type = config.type || String;
-    if (this.type === String) {
-        this.stringType = config.stringType || 'character';
-    }
+    this.type = config.type || 'character';
 
     //property initializations
-    this._states = {};
+    this._states = {
+    };
+
     this._outputConfig = {};
 
     //defaults for generate function
@@ -39,7 +37,6 @@ const Chain = function (config = {}, training = undefined) {
         cropToLength: true
 
     };
-
 
     //optional training data parsing
     if (training) {
@@ -80,22 +77,12 @@ Chain.prototype.train = function (trainingData) {
  * @returns {void}
  */
 Chain.prototype._learnFrom = function (data) {
-    switch (this.type) {
-        case String:
-            if (this.stringType === 'word') {
-                this._learnFromWords(data);
-            } else {
-                this._learnFromCharacters(data);
-            }
-            break;
-        //TODO: implement
-        case Number:
-            this._learnFromNumber(data);
-            break;
-        default:
-            this._learnFromString(data);
-            break;
+    if (this.type == 'word') {
+        this._learnFromWords(data);
+    } else {
+        this._learnFromCharacters(data);
     }
+
 }
 
 
@@ -106,7 +93,7 @@ Chain.prototype._learnFrom = function (data) {
  * @returns {Boolean}
  */
 Chain.prototype.doesStateExist = function (state) {
-    if(this._states.hasOwnProperty(state)){
+    if (this._states.hasOwnProperty(state)) {
         return true;
     }
     return false;
@@ -269,7 +256,6 @@ Chain.prototype._generateSentences = function (config) {
         sentenceGeneration: {
             while (words < actualLength) {
                 actualState = this._getNextState(actualState);
-                //console.log(actualState);
                 if (actualState) {
                     sentence += ' ' + actualState;
                     words += this.order;
@@ -285,29 +271,7 @@ Chain.prototype._generateSentences = function (config) {
 }
 
 
-/**
- * @description - Takes an optional configuration objet that alters how the generator works, if no configuration the default values on each parameter will be used, then it calls the apropiate generator function.
- * @public
- * @param {Object} [config=this._outputConfig] 
- * @param {Number} [config.minLength=chain order] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
- * @param {Number} [config.maxLength=chain order*2] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
- * @param {Number} [amount=1] - Amount of output units to generate, where an output unit is a sentence/word/number depending on the chain type
- * @param {Boolean} [capitalizeFirst=false] - Wether to capitalize first character of words, do not provide this if chain is not based on strings parsed as characters
- * @param {Boolean} [cropToLength=true] - Wether to crop the output to the maximum length provided, if set to false the generator will discard output that surpases the maximum length, efectively taking longer, setting it to true will crop the output creating subsections of the chains which might not be desired
- * @returns {String[]}
- */
-Chain.prototype.generate = function (config = this._outputConfig) {
-
-    //bootstrap properties into configuration local object
-    for (var key in this._defaultOutput) {
-        if (this._defaultOutput.hasOwnProperty(key)) {
-            config[key] = config[key] || this._defaultOutput[key];
-        }
-    }
-
-    if (this.stringType === 'word') {
-        return this._generateSentences(config);
-    }
+Chain.prototype._generateWords = function (config) {
 
     let output = [];
     //on each loop iteration if conditions are met a word will be pushed
@@ -357,6 +321,35 @@ Chain.prototype.generate = function (config = this._outputConfig) {
 
     }
     return output;
+}
+
+
+/**
+ * @description - Takes an optional configuration objet that alters how the generator works, if no configuration the default values on each parameter will be used, then it calls the apropiate generator function.
+ * @public
+ * @param {Object} [config=this._outputConfig] 
+ * @param {Number} [config.minLength=chain order] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
+ * @param {Number} [config.maxLength=chain order*2] - minimum length of the generated data, that is, length in characters/words/digits depending on what the chain type is
+ * @param {Number} [amount=1] - Amount of output units to generate, where an output unit is a sentence/word/number depending on the chain type
+ * @param {Boolean} [capitalizeFirst=false] - Wether to capitalize first character of words, do not provide this if chain is not based on strings parsed as characters
+ * @param {Boolean} [cropToLength=true] - Wether to crop the output to the maximum length provided, if set to false the generator will discard output that surpases the maximum length, efectively taking longer, setting it to true will crop the output creating subsections of the chains which might not be desired
+ * @returns {String[]}
+ */
+Chain.prototype.generate = function (config = this._outputConfig) {
+
+    //bootstrap properties into configuration local object
+    for (var key in this._defaultOutput) {
+        if (this._defaultOutput.hasOwnProperty(key)) {
+            config[key] = config[key] || this._defaultOutput[key];
+        }
+    }
+
+    if (this.type === 'word') {
+        return this._generateSentences(config);
+    } else {
+        return this._generateWords(config);
+    }
+
 }
 
 module.exports = Chain;
