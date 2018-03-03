@@ -26,7 +26,9 @@ const Chain = function (config = {}, training = undefined) {
     this._states = {
     };
 
-    this._outputConfig = {};
+    this._outputConfig = {
+
+    };
 
     //defaults for generate function
     this._defaultOutput = {
@@ -35,7 +37,6 @@ const Chain = function (config = {}, training = undefined) {
         amount: 1,
         capitalizeFirst: false,
         cropToLength: true
-
     };
 
     //optional training data parsing
@@ -204,8 +205,8 @@ Chain.prototype._getRandomState = function () {
 /**
  * @private
  * @description - Takes a state identifier and returns a random state that conects with it, that is, from all the states that can be reached from this state
- * @param {String | Symbol | Number | } state - identifier of the state that will be used to search for its subordinate states
- * @returns {String | Symbol | Number | undefined} They key that identifies the selected state
+ * @param {String } state - identifier of the state that will be used to search for its subordinate states
+ * @returns {String | undefined} They key that identifies the selected state
  */
 Chain.prototype._getNextState = function (state) {
     const stateObj = this._states[state];

@@ -1,23 +1,15 @@
 "use strict";
 
-/**
- * 
- * 
- * @param {Array|String} arg 
- * @returns {Any | String} the value inside the random position of the provided element
- */
+
+
 const getRandomFrom = (arg) => {
     return arg[Math.floor(Math.random() * arg.length)];
 }
 
 
 
-/**
- * 
- * @description chooses a random element from a object with weighted keys
- * @param {Object} list 
- * @returns {String} Selected key of the object
- */
+
+// chooses a random element from a object with weighted keys
 const getRandomFromWeightedList = (list)=> {
 
     let weightSum = 0;
@@ -39,12 +31,8 @@ const getRandomFromWeightedList = (list)=> {
 }
 
 
-/**
- * 
- * @description returns the provided string with the first character capitalized, this only affects capitalizable characters, most symbols will remain unalteared
- * @param {String} str 
- * @returns {String}
- */
+
+//returns the provided string with the first character capitalized, this only affects capitalizable characters, most symbols will remain unalteared
 const capitalize = (str)=>{
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
