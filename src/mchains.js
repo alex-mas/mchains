@@ -47,6 +47,8 @@ const Chain = function (config = {}, training = undefined) {
 
 
 /**
+ * @function
+ * @name Chain.train
  * @description Trains the chain on the provided data, creating and altering states
  * @public
  * @param {Any} trainingData - Data structure to recursively iterate finding the root elements and adding them to training
@@ -75,6 +77,8 @@ Chain.prototype.train = function (trainingData) {
 }
 
 /**
+ * @function
+ * @name Chain.doesStateExist
  * @description - Returns wether or not the provided param is a state inside the chain
  * @public
  * @param {String} state - Key to iterate states looking for a match
@@ -160,6 +164,8 @@ Chain.prototype._learnFromWords = function (data) {
 
 
 /**
+ * @function
+ * @name Chain.configOutput
  * @description - Sets the output config user defaults to be used when generating output from the chain
  * @public
  * @param {Object} config 
@@ -171,6 +177,8 @@ Chain.prototype.configOutput = function (config) {
 
 
 /**
+ * @function
+ * @name Chain.getNgrams
  * @public
  * @description - Returns the array containing the keys that make the chain states object
  * @returns {String[]} the array of the states of the chain
@@ -313,6 +321,8 @@ Chain.prototype._generateWords = function (config) {
 
 
 /**
+ * @function
+ * @name Chain.generate
  * @description - Takes an optional configuration objet that alters how the generator works, if no configuration the default values on each parameter will be used, then it calls the apropiate generator function.
  * @public
  * @param {Object} [config=this._outputConfig] 

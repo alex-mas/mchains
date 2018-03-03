@@ -44,7 +44,7 @@ let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse'
 ```
 
 
-# documentation
+# [documentation](./docs/mchains/1.1.4/global.html)
 
 Markov chains are discrete sequences of states, commonly used in generation of strings, numbers and other data.
 
