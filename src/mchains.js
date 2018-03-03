@@ -7,14 +7,22 @@ const {
 } = require('./utils');
 
 
+/**
+ * @module mchains
+ * 
+ */
 
 /**
  * 
+ * @class
  * @description - Constructs a Chain object with the provided configuration, if training data is provided it will also train on that data
  * @param {Object} [config={}]
  * @param {Number} [config.order = 2] - The order of the chain, that will decide how many elements get grouped together to form each state
  * @param {String} [config.type = 'character'] - Conditional property: Only provide it if config.type is String, it can take two values: 'character' and 'word'. Depending on the value provided the strings will be parsed as words or as characters respectively
  * @param {Object | String[] | String | undefined} [training=undefined]
+ * 
+ * @property {Number} order
+ * @property {String} type
  *  
  */
 const Chain = function (config = {}, training = undefined) {
@@ -47,8 +55,6 @@ const Chain = function (config = {}, training = undefined) {
 
 
 /**
- * @function
- * @name Chain.train
  * @description Trains the chain on the provided data, creating and altering states
  * @public
  * @param {Any} trainingData - Data structure to recursively iterate finding the root elements and adding them to training
@@ -77,8 +83,6 @@ Chain.prototype.train = function (trainingData) {
 }
 
 /**
- * @function
- * @name Chain.doesStateExist
  * @description - Returns wether or not the provided param is a state inside the chain
  * @public
  * @param {String} state - Key to iterate states looking for a match
@@ -164,10 +168,8 @@ Chain.prototype._learnFromWords = function (data) {
 
 
 /**
- * @function
- * @name Chain.configOutput
- * @description - Sets the output config user defaults to be used when generating output from the chain
  * @public
+ * @description - Sets the output config user defaults to be used when generating output from the chain
  * @param {Object} config 
  * @returns {void}
  */
@@ -177,8 +179,6 @@ Chain.prototype.configOutput = function (config) {
 
 
 /**
- * @function
- * @name Chain.getNgrams
  * @public
  * @description - Returns the array containing the keys that make the chain states object
  * @returns {String[]} the array of the states of the chain
@@ -321,8 +321,6 @@ Chain.prototype._generateWords = function (config) {
 
 
 /**
- * @function
- * @name Chain.generate
  * @description - Takes an optional configuration objet that alters how the generator works, if no configuration the default values on each parameter will be used, then it calls the apropiate generator function.
  * @public
  * @param {Object} [config=this._outputConfig] 
