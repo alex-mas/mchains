@@ -1,6 +1,8 @@
 mchains.js
 ===
-Simple string markov chains
+
+Simple library to generate string [markov chains](https://en.wikipedia.org/wiki/Markov_chain)
+
 
 # install 
 ```
@@ -10,43 +12,34 @@ npm i mchains --save
 
 # usage
 ### supports UMD
-Right now only string chains are supported
 
 
 
-```javascript 
-
-/*IMPORTING THE SCRIPT*/
+###usage with commonjs:
 
 
-//common.js
+```javascript
+
 const Chain = require('mchains');
-
-//Import globally
-<script src="node_modules/mchains/mchains.js"></script>
-//NOTE: If you imported it via html script tag you must access it via window.mchains as follows:
-const Chain = window.mchains
-
-
-
-//chain with configuration and training data
-let chain = new Chain({
-            order: 2,
-            type: 'character',
-        }, 'this is a string, you can insert an array with strings too');
-
-let untrainedChain =  new Chain();
-
-untrainedChain.train(['first string', 'second string' ...yourData]);
-
-let arrayOfStrings = chain.generate();// possible output ['stri', 'you ', 'inse']
 
 ```
 
+###usage in the browser without any loader
+
+```html
+<!-- In the html-->
+<script src="node_modules/mchains/mchains.js"></script>
+<script src="yourCode.js"></script>
+```
+
+```javascript 
+
+//inside your javascript source
+const Chain = window.mchains;
+
+```
 
 # [documentation](./docs/mchains/1.1.4/module-mchains.html)
-
-Markov chains are discrete sequences of states, commonly used in generation of strings, numbers and other data.
 
 
 ### constructor

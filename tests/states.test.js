@@ -1,5 +1,5 @@
 const Chain = require('../src/mchains');
-const testSamples = require('./tests_db/stateTests');
+const testSamples = require('./fixtures/stateTests');
 var nGram = require('n-gram');
 const log = false;
 

@@ -1,6 +1,6 @@
 const Chain = require('../src/mchains');
-const valyrianNames = require('./tests_db/valyrian');
-const testSamples = require('./tests_db/stateTests');
+const valyrianNames = require('./fixtures/valyrian');
+const testSamples = require('./fixtures/stateTests');
 const log = true;
 
 describe('Output tests', function () {

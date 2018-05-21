@@ -1,5 +1,5 @@
 const Chain = require('../src/mchains');
-const testSamples = require('./tests_db/stateTests');
+const testSamples = require('./fixtures/stateTests');
 
 let trumpChain = new Chain(
     {
