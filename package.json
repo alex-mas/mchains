@@ -8,11 +8,11 @@
     "build": "webpack --config=webpack.mdl.config.js",
     "docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
-  "homepage": "https://github.com/r-Sulfar/mchains",
+  "homepage": "https://github.com/alex-mas/mchains",
   "url": "TODO",
   "repository": {
     "type": "git",
-    "url": "https://github.com/r-Sulfar/mchains.git"
+    "url": "https://github.com/alex-mas/mchains.git"
   },
   "email": "sulfar.dev@gmail.com",
   "engines": {
