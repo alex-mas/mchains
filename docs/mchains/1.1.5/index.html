@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3>mchains 1.1.5</h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>mchains.js</h1><p>Simple library to generate string <a href="https://en.wikipedia.org/wiki/Markov_chain">markov chains</a></p>
+<h1>install</h1><pre class="prettyprint source"><code>npm i mchains --save</code></pre><h1>usage</h1><h3>supports UMD</h3><h3>usage with commonjs:</h3><pre class="prettyprint source lang-javascript"><code>
+const Chain = require('mchains');
+</code></pre><h3>usage in the browser without any loader</h3><pre class="prettyprint source lang-html"><code>&lt;!-- In the html-->
+&lt;script src=&quot;node_modules/mchains/mchains.js&quot;>&lt;/script>
+&lt;script src=&quot;yourCode.js&quot;>&lt;/script></code></pre><pre class="prettyprint source lang-javascript"><code>
+//inside your javascript source
+const Chain = window.mchains;
+</code></pre><h1><a href="./docs/mchains/1.1.4/module-mchains.html">documentation</a></h1><h3>constructor</h3><pre class="prettyprint source lang-javascript"><code>
+new Chain(parameters);
+</code></pre><p>Parameters:</p>
+<ul>
+<li>Configuration object(optional)</li>
+<li>Training data(optional)</li>
+</ul>
+<h4>Configuration object(optional):</h4><h5>order:</h5><p>Defines how many items are grouped together to form a state, in the case of strings that is either words or characters
+If you want to use this for word generation a lower order will produce more random-like patterns than higher order values</p>
+<h5>type:</h5><p>Determines how the strings are parsed and generated:</p>
+<ul>
+<li>&quot;character&quot; will make the strings be parsed as sequences of characters</li>
+<li>&quot;word&quot; will make the strings be parsed as sequences of words (strings delimited by &quot; &quot;, &quot;\n&quot; and &quot;\r&quot; )</li>
+</ul>
+<h4>Training data:</h4><p>Optional training data for the chain to process, more information about training data below.</p>
+<h3>methods</h3><h4>train()</h4><p>Takes data to train from it generating new states for the chain.</p>
+<p>Valid data:</p>
+<ul>
+<li>A string</li>
+<li>An array of strings</li>
+<li>An object with string values in its properties</li>
+</ul>
+<p>Examples:</p>
+<pre class="prettyprint source lang-javascript"><code>
+//option 1:
+const training = ' just a simple string';
+
+//option 2:
+const training = ['first string', 'second string', ['string inside an array', 'etc...']];
+
+//option 3: 
+const training = {
+    firstSampleData: ['first string', 'second string', ['string inside an array', 'etc...']],
+    secondSampleData: {
+        whateverKey: ['first string', 'second string', ['string inside an array', 'etc...']],
+        anotherKey: 'just a simple string'
+    },
+    thirdSampleData: 'just a simple string'
+}
+
+</code></pre><h4>doesStateExist(String)</h4><p>returns true if the string matches one of the chain states, false otherwise</p>
+<h4>configOutput(config)</h4><p>Takes a configuration object to configure the output of the generate method</p>
+<p>Configuration object properties:</p>
+<ul>
+<li>minLength            -&gt; defaults to chain order</li>
+<li>maxLength            -&gt; defaults to chain's order * 2</li>
+<li>amount               -&gt; defaults to 1</li>
+<li>capitalizeFirst      -&gt; defaults to false</li>
+<li>cropToLength         -&gt; defaults to false</li>
+</ul>
+<h4>getNgrams()</h4><p>returns an array of strings, representing the unique ngrams found in the provided training data</p>
+<h4>generate(config)</h4><p>returns an array of strings generated randomly from the internal states of the chain</p>
+<ul>
+<li>The config param matches the structure of the parameter of configOutput method</li>
+</ul>
+<h3>Properties</h3><p>Note: public properties that are ment to be readonly, they are initialized with the cosntructor:</p>
+<h4>Chain.order</h4><p>returns the order of the chain, that is, how many items are grouped together to form each state</p>
+<pre class="prettyprint source lang-javascript"><code>let chain = new Chain();
+chain.order </code></pre><h4>Chain.type</h4><p>returns the method used to parse strings, if Chain.type is not String this property will not be used by the algorithm</p>
+<pre class="prettyprint source lang-javascript"><code>let chain = new Chain();
+chain.type </code></pre><h2>live examples</h2><p>The following page uses this algorithm in order to generate some of the names
+<a href="http://www.randomfantasynames.com/">demo page</a></p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-mchains.html">mchains</a></li></ul><h3>Classes</h3><ul><li><a href="module-mchains-Chain.html">Chain</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon May 21 2018 22:59:09 GMT+0200 (Romance Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
