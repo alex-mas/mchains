@@ -18,7 +18,7 @@
   "engines": {
     "node": ">= 6.4.0"
   },
-  "author": "sulfar",
+  "author": "alex_mas",
   "license": "MIT",
   "devDependencies": {
     "jest": "^22.1.4",
