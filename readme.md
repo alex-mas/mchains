@@ -15,7 +15,7 @@ npm i mchains --save
 
 
 
-###usage with commonjs:
+### usage with commonjs:
 
 
 ```javascript
@@ -24,7 +24,7 @@ const Chain = require('mchains');
 
 ```
 
-###usage in the browser without any loader
+### usage in the browser without any loader
 
 ```html
 <!-- In the html-->
